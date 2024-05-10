@@ -61,6 +61,9 @@ export const KanbanBoard = () => {
       return {...col, title}
     })
 
+
+
+
     setColumns(newColumns)
     
     console.log("Update occured")
@@ -73,6 +76,19 @@ export const KanbanBoard = () => {
 
 
   }
+
+
+  function updateTask(id, desc) {
+    const newTasks = tasks.map((task) => {
+      if (task.id !== id) 
+        return task;
+      
+      return { ...task, desc };
+    });
+  
+    setTasks(newTasks);
+  }
+  
  
   // Setting Tasks
   const[tasks, setTasks] = useState([])
@@ -200,7 +216,8 @@ function DragEnd(event) {
                   <ColumnContainer key={column.id} column={column} deleteColumn={deleteColumn}  
                   updateColumn= {updateColumn} CreateTask={CreateTask} 
                   tasks={tasks.filter((task => task.columnId === column.id))}
-                  deleteTask={deleteTask}
+                  deleteTask={deleteTask} updateTask ={updateTask}
+                  
                   />
 
                 </div>)
@@ -230,7 +247,7 @@ function DragEnd(event) {
               <ColumnContainer column={activeColumn} deleteColumn={deleteColumn}
               updateColumn={updateColumn} CreateTask={CreateTask} 
               tasks={tasks.filter((task => task.columnId === activeColumn.id))}
-              deleteTask={deleteTask}/>
+              deleteTask={deleteTask} updateTask={updateTask}/>
 
             )
 

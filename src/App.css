@@ -110,7 +110,7 @@ button svg
 
 .tasks .task
 {
-  background-color: green;
+  background-color: #2c2c2c;
   height: 100px;
   display: flex;
   align-items: center;
@@ -126,5 +126,15 @@ button svg
   stroke: white;
   position: absolute;
   top: auto;
-  right: 5%;
+  right: 0%;
+}
+
+
+textarea
+{
+  width: 90%;
+  height: 90%;
+  background: #2c2c2c;
+  border: none;
+  color: white;
 }

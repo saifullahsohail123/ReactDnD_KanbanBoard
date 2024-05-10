@@ -8,30 +8,55 @@ import { Button } from "react-bootstrap"
 
 // export const TaskCard = ({task}) => { //another way
 
-export const TaskCard = ({task, deleteTask}) => {
+export const TaskCard = ({task, deleteTask, updateTask}) => {
 
-  const [MouseOver,setMouseOver] =useState(false)
-  const [editMode, seteditMode] = useState(false)
 
+
+
+
+
+
+  
+
+  const [editMode, setEditMode] = useState(false);
+  const [content, setContent] = useState(task.content);
+  const [mouseOver, setMouseOver] = useState(false);
+
+  const toggleEditMode = () => {
+    setEditMode((prev) => !prev);
+    setMouseOver(false);
+  };
+
+  const handleContentChange = (e) => {
+    setContent(e.target.value);
+  };
+
+  const handleBlur = () => {
+    // Update task content when blurring out of the textarea
+    updateTask(task.id, content);
+    toggleEditMode();
+  };
   
   
 
-    // const {task} =  Props
-        
   return (
-    // display icon only if the edit mode is false
-    <div className="task"  onMouseEnter={!editMode ? ()=> setMouseOver(true) : undefined} onMouseLeave={!editMode ? ()=> setMouseOver(false) : undefined}>
-      
-      {/* <textarea name="" id="" value={task.content} autoFocus placeholder="Task content here" onBlur={() => seteditMode(true)}>
-      </textarea> */}
-        
+    <div className="task" onClick={toggleEditMode} onMouseEnter={() => setMouseOver(true)} onMouseLeave={() => setMouseOver(false)}>
+      {editMode ? (
+        <textarea
+          name=""
+          id=""
+          placeholder="Task content here"
+          value={content}
+          autoFocus
+          onBlur={handleBlur}
+          onChange={handleContentChange}
+        />
+      ) : (
+        <span>{content}</span>
+      )}
 
-        {task.content}
-
-    
-     {MouseOver &&  (<Button onClick={()=> deleteTask(task.id)}> <DeleteIcon/></Button>) } 
-      </div>
-  )
-}
-
+      {mouseOver && <Button onClick={() => deleteTask(task.id)}> <DeleteIcon/></Button>}
+    </div>
+  );
+};
 

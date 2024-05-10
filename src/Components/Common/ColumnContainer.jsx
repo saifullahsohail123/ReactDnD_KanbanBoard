@@ -7,11 +7,12 @@ import { useState } from 'react';
 import Plus from '../../Assets/icons/plus';
 import { propTypes } from 'react-bootstrap/esm/Image';
 import { TaskCard } from './TaskCard';
-
+import { SortableContext } from '@dnd-kit/sortable';
+import { DndContext } from '@dnd-kit/core';
 
 const ColumnContainer = (props) => {
   
-  const { column, deleteColumn, updateColumn, CreateTask, tasks, deleteTask } = props; // Use props directly, not this.props
+  const { column, deleteColumn, updateColumn, CreateTask, tasks, deleteTask, updateTask } = props; // Use props directly, not this.props
 
   const [editMode, seteditMode] = useState(false)
 
@@ -86,8 +87,10 @@ if(isDragging)
         
         {/* Column Task container */}
         <div className='tasks'>
+
+
   {tasks.map(task => (
-      <TaskCard key={task.id} task={task} deleteTask={deleteTask} />
+      <TaskCard key={task.id} task={task} deleteTask={deleteTask} updateTask={updateTask}/>
 
   ))}
 </div>
@@ -113,7 +116,7 @@ ColumnContainer.propTypes = {
   updateColumn: PropTypes.func.isRequired,
   CreateTask: PropTypes.func.isRequired,
   deleteTask: PropTypes.func.isRequired,
-
+  updateTask: PropTypes.func.isRequired,
 
 };
 
