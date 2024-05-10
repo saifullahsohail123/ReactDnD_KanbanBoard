@@ -1,0 +1,130 @@
+p
+{
+  margin: 0 !important;
+}
+
+body
+{
+  background-color: black;
+  color: white;
+}
+
+.AddColumn button
+{
+  color: white;
+  background: none !important;
+  box-shadow: none !important;
+  height: 60px;
+  width: 350px;
+  cursor: pointer;
+  border: 1px solid white !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+
+}
+
+.columns button
+{
+  height: max-content;
+  background: none;
+  border: none;
+}
+.columns button:hover
+{
+  background: none;
+}
+
+.columns button svg
+{
+  width: 25px;
+  height: auto;
+}
+
+.title button svg
+{
+  stroke: white !important;
+  opacity: 0.2;
+}
+
+.columns button:hover svg
+{
+  stroke: white !important;
+  opacity: 1;
+
+}
+
+
+button svg
+{
+  width: 40px;
+}
+
+.kanban
+{
+  display: flex;
+  width: 100%;
+  margin: 0 auto;
+  align-items: center;
+  overflow-x: auto;
+  overflow-y: hidden;
+  min-height: 100vh;
+}
+
+
+.columns
+{
+  background-color: gray;
+  width: 400px;
+  height: 400px;
+  max-height: 500px;
+  /* display: flex; */
+  justify-content: center;
+  align-items: flex-start;
+  margin: 10px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.title
+{
+  background-color: dimgrey;
+  height: 60px;
+  align-items: center;
+  font-weight: bold;
+  border: 1px solid gray;
+  width: 100%;
+}
+
+.tasks
+{
+  width: 100%;
+  flex-direction: column;
+  display: flex;
+  gap: 10px;
+  overflow-y: auto;
+}
+
+.tasks .task
+{
+  background-color: green;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  position: relative;
+
+  
+
+}
+
+.task button
+{
+  stroke: white;
+  position: absolute;
+  top: auto;
+  right: 5%;
+}
