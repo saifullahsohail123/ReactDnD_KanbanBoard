@@ -3,7 +3,7 @@ import { Button } from 'react-bootstrap';
 import DeleteIcon from '../../Assets/icons/delete';
 import { useSortable } from '@dnd-kit/sortable';
 import {CSS} from '@dnd-kit/utilities'
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import Plus from '../../Assets/icons/plus';
 import { propTypes } from 'react-bootstrap/esm/Image';
 import { TaskCard } from './TaskCard';
@@ -11,12 +11,19 @@ import { SortableContext } from '@dnd-kit/sortable';
 import { DndContext } from '@dnd-kit/core';
 
 const ColumnContainer = (props) => {
+
+
+
   
   const { column, deleteColumn, updateColumn, CreateTask, tasks, deleteTask, updateTask } = props; // Use props directly, not this.props
 
   const [editMode, seteditMode] = useState(false)
 
 
+  const taskIds = useMemo(()=>
+    {
+      return tasks.map((task) => task.id)
+    })
 
   const {setNodeRef, attributes, listeners, transform, transition, isDragging} = useSortable(
     {
@@ -88,11 +95,12 @@ if(isDragging)
         {/* Column Task container */}
         <div className='tasks'>
 
-
+<SortableContext items={taskIds}>
   {tasks.map(task => (
       <TaskCard key={task.id} task={task} deleteTask={deleteTask} updateTask={updateTask}/>
 
   ))}
+  </SortableContext>
 </div>
 
         {/* Column Footer */}
