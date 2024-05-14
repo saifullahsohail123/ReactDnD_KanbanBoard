@@ -252,6 +252,7 @@ function DragOver(event) {
 
   const isOveraColumn = over.data.current?.type === "Column";
 
+  
   // Dropping a task over another column
   if (isActiveTask && isOveraColumn) {
     setTasks(tasks => {
